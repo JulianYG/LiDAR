@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Your Paper}
+\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\section{Introduction}
+Car detection has long been a popular topic in computer vision field. With the rise of industrial attention in autonomous driving and research focus on convolutional neural networks (CNN), car detection has seen rapid development recently. Early car detection in autonomous driving relies heavily on expensive devices, such as LIDAR, to sample depth and norm information. Recent works have tried to perform car detection based simply on camera captured images, and have reached considerably high accuracy on specialized datasets such as KITTI. Famous ones include fast R-CNN\cite{}, RPN\cite{}, etc. However those methods only make use of image data, and subject to problems such as scale variation, occlusion, and truncation\cite{}. To overcome these deficiencies and achieve better accuracy, we propose a new method to incorporate LIDAR into on-board detection system, which shifts the costly part to offline. We want to use CNN to train an image-LIDAR model, that takes in an RGB image and outputs depth, norm, and semantic segmentation obtained from its LIDAR map. We then perform car detection as well as simple 3D reconstruction on these outputs.
+
+\section{Motivations}
+In recent publications, CNN has shown strong ability in both geometry and semantic scene understanding. A lot of work have been done in indoor scene depth and normal estimation using single RGB image and got pretty good results\cite{laina2016deeper}\cite{li2015depth}\cite{hane2015direction}\cite{eigen2015predicting}. But research of outdoor scene is hindered by the getting reliable ground truth for training. The depth ground truth of outdoor scene could not be acquired by Kinect, which is able to obtain depth maps with identical sampling rate to those of color images. Two generally used depth measurements in outdoor environment is LiDAR and stereo. Stereo equipment is hard to get perfect calibration between multi cameras and the process of computing depth from raw input is really computational expensive. Also the accuracy range of stereo is limited compared with LiDAR. On the other hand, although LiDAR has farther measuring distance, its sampling rate is extremely sparse.Considering the strong need of understanding geometry information in the outdoor road scene for autonomous driving, we decide to do single image depth estimation in outdoor road environment. 
+
+\section{Potential Problems \& Approaches}
+We plan to use on-the-shelf single indoor image depth estimation neural network structure from \cite{eigen2015predicting}, use both stereo and LiDAR captured depth information to generate ground truth for training. We expect to overcome the unsatisfactory depth ground truth problem and the algorithm could predict depth from single outdoor road scene color image.
+\\\\
+Besides the geometry estimation, since the geometry information has many applications. If the depth estimation task could be solved on schedule, we also want to applicate one of the applications, car detection using geometry estimation. First reconstruct the 3D scene from our depth prediction, then compute the probability map in the 3D scene showing where cars might be, finally using some on-the-shelf methods to detect cars in our probability map.
+ 
+\section{Dataset}
+In this project, we choose to use the KITTI Benchmark \cite{Geiger2013IJRR}\cite{Fritsch2013ITSC}\cite{Menze2015CVPR}. It contains a large number of images with stereo and LiDAR sensing data which can be used in the depth estimation task. For the detection problem, KITTI also has specific problem section for training and testing.
+
+\bibliographystyle{ieeetr}
+\bibliography{sample}
+
+\end{document}
