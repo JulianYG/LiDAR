@@ -1,0 +1,46 @@
+close all;
+clear all;
+clc
+
+para.cam       = 2; % 0-based index
+para.frame_skip=20;
+para.depth_output='..\depth_data\depth\';
+para.image_output='..\depth_data\rgb\';
+data_name=[35, 46, 48, 93, 104, 106, 18];
+calib_list={'..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_26_calib\2011_09_26';...
+    '..\data\2011_09_30_calib\2011_09_30';...
+    };
+base_list={'..\data\2011_09_26_drive_0035_sync\2011_09_26\2011_09_26_drive_0035_sync';...
+    '..\data\2011_09_26_drive_0046_sync\2011_09_26\2011_09_26_drive_0046_sync';...
+    '..\data\2011_09_26_drive_0048_sync\2011_09_26\2011_09_26_drive_0048_sync';...
+    '..\data\2011_09_26_drive_0093_sync\2011_09_26\2011_09_26_drive_0093_sync';...
+    '..\data\2011_09_26_drive_0104_sync\2011_09_26\2011_09_26_drive_0104_sync';...
+    '..\data\2011_09_26_drive_0106_sync\2011_09_26\2011_09_26_drive_0106_sync';...
+    '..\data\2011_09_30_drive_0018_sync\2011_09_30\2011_09_30_drive_0018_sync';...
+    };
+data_index=1:size(data_name,2);
+% visualizeImgDepth2D(para, frame, u, v, depth);
+
+% generate depth and put in para.depth_output_dir
+delete([para.depth_output, '*.dat']);
+delete([para.image_output, '*.png']);
+output_data=[];
+output_frame=[];
+total_frame_i=0;
+
+for i=data_index
+    % disp('======= KITTI DevKit Demo =======');
+    [output_frame_ind, total_frame_i] = generateDepth(base_list{i}, calib_list{i}, para, total_frame_i);
+    output_data_ind = data_name(i)*ones(size(output_frame_ind));
+    output_data=[output_data; output_data_ind];
+    output_frame=[output_frame; output_frame_ind];
+end
+
+fileID = fopen([para.depth_output, '..\raw_data_num_frame.txt'],'w');
+fprintf(fileID,'%04d %010d\n',[output_data, output_frame]');
+fclose(fileID);
