@@ -1,0 +1,10 @@
+This file contains the rgb frames and correspondent lidar depth from KITTI dataset (camera02 and velodyne).
+In the ./rgb directory are rgb images. In the ./depth directory are depth of each identical named rgb images in the ./rgb directory.
+
+Depth images are sparse points. Each line represents a point with (u, v, depth).
+u, v refer to the image width and height coordinates value.
+
+For better understanding, please run demo.m which reads and visualizes the depth data on rgb image. 
+
+
+raw_data_num_frame.txt contains the information of original data index and frame number of the rgb images from KITTI raw sync+rectified dataset
