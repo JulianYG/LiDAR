@@ -10,3 +10,12 @@ For better understanding, please run demo.m which reads and visualizes the depth
 
 
 raw_data_num_frame.txt contains the information of original data index and frame number of the rgb images from KITTI raw sync+rectified dataset
+
+for lidar data upsampling:
+code:
+https://bitbucket.org/shshzaa/depth-enhancement
+http://www.ok.ctrl.titech.ac.jp/res/DSR/RI.html
+papers:
+https://arxiv.org/pdf/1606.05614.pdf
+http://visual.cs.ucl.ac.uk/pubs/depthSuperRes/supp/index.html
+
