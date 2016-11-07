@@ -1,3 +1,5 @@
+zip of data is at https://drive.google.com/file/d/0BzytrZtWOJf8OWlXazhvaWV3LTg/view?usp=sharing
+
 This file contains the rgb frames and correspondent lidar depth from KITTI dataset (camera02 and velodyne).
 In the ./rgb directory are rgb images. In the ./depth directory are depth of each identical named rgb images in the ./rgb directory.
 
