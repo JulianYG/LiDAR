@@ -1,3 +1,5 @@
 **/.DS_STORE
 .DS_STORE
 data
+dnl-depthnormals/weights
+semlabels_nyud4_vgg
