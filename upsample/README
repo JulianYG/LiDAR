@@ -8,7 +8,6 @@ u, v refer to the image width and height coordinates value.
 
 For better understanding, please run demo.m which reads and visualizes the depth data on rgb image. 
 
-
 raw_data_num_frame.txt contains the information of original data index and frame number of the rgb images from KITTI raw sync+rectified dataset
 
 for lidar data upsampling:
