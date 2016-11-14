@@ -60,3 +60,4 @@ pred_depths = self.inverse_depth_transform(self.scale3.depths.pred_mean)
 pred_normals = self.scale3.normals.pred_mean
 infer_f = theano.function([v.images], (pred_depths, pred_normals))
 # theano.function {inputs, outputs, updates}
+# more brief theano tutorial: http://cs231n.stanford.edu/slides/winter1516_lecture12.pdf
