@@ -42,3 +42,21 @@ for inference on a current unmodified theano build, it may take up more GPU
 memory than needed due to use of test values for shape information.  The git
 patch file "theano_test_value_size.patch" is also included and might be used to
 enable this feature on your own tree.
+
+
+========================================
+by yolanda, pipeline comments
+========================================
+# initialize net
+module_fn = 'models/iccv15/%s.py' % model_name
+config_fn = 'models/iccv15/%s.conf' % model_name
+params_dir = 'weights/iccv15/%s' % model_name
+machine = net.create_machine(module_fn, config_fn, params_dir)
+
+# test
+(pred_depths, pred_normals) = machine.infer_depth_and_normals(rgb_imgs)
+# run network
+pred_depths = self.inverse_depth_transform(self.scale3.depths.pred_mean)
+pred_normals = self.scale3.normals.pred_mean
+infer_f = theano.function([v.images], (pred_depths, pred_normals))
+# theano.function {inputs, outputs, updates}
