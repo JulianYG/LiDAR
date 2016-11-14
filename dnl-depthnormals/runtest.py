@@ -1,7 +1,7 @@
 import sys
 
-sys.path.remove('/home/deigen/src/Theano')
+# sys.path.remove('/home/deigen/src/Theano')
 
-import demo_depth
+import demo_depthnormals
 
-demo_depth.main()
+demo_depthnormals.main()

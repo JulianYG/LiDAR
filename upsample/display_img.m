@@ -14,3 +14,6 @@ imshow(img); hold on;
 % plot points
 M = csvread([parent_dir, '/data/depth/', data_list(i).name(1:end-4), '.dat']);
 scatter(M(:,1), M(:,2), 70*ones(size(M,1),1), M(:,3), 'filled');
+
+M(:,1)
+
