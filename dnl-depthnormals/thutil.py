@@ -36,10 +36,9 @@ from common import imgutil, logutil
 
 _log = logutil.getLogger()
 
-use_gpu = theano.config.device.startswith('gpu')
-
+# use_gpu = theano.config.device.startswith('cpu')
 checkgrad = False
-
+use_gpu = False
 if use_gpu:
     from theano.sandbox.cuda import GpuOp, gpu_from_host, host_from_gpu, \
                                     CudaNdarrayType, CudaNdarray
