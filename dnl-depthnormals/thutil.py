@@ -40,8 +40,8 @@ _log = logutil.getLogger()
 checkgrad = False
 use_gpu = False
 if use_gpu:
-    from theano.sandbox.cuda import GpuOp, gpu_from_host, host_from_gpu, \
-                                    CudaNdarrayType, CudaNdarray
+    from theano.sandbox.cuda import GpuOp, \
+                                    CudaNdarrayType, CudaNdarray, gpu_from_host, host_from_gpu
     from theano.sandbox.cuda.basic_ops import gpu_contiguous
 
 class Eval(object):

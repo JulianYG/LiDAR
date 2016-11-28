@@ -21,7 +21,7 @@ Running the Demo
 The demo loads the depth prediction network, compiles a theano function for
 inference, and infers depth for a single image.  To run:
 
-> THEANO_FLAGS=device=gpu0 python demo_depth.py
+>THEANO_FLAGS='floatX=float32,device=gpu0' python demo_depthnormals.py
 
 This should create a file called "demo_nyud_depth_prediction.png" with the
 predicted depth for the input "demo_nyud_rgb.jpg".  (Substitute the gpu you
