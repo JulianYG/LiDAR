@@ -15,13 +15,13 @@ def main():
 
     module_fn = 'models/iccv15/%s.py' % model_name
     config_fn = 'models/iccv15/%s.conf' % model_name
-    params_dir = 'weights/iccv15/%s' % model_name
+    params_dir = 'weights/%s' % model_name
 
     # load depth network
     machine = net.create_machine(module_fn, config_fn, params_dir)
 
     # demo image
-    rgb = Image.open('demo_nyud_rgb.jpg')
+    rgb = Image.open('KITTI0.png')
     rgb = rgb.resize((320, 240), Image.BICUBIC)
 
     # build depth inference function and run
@@ -30,6 +30,8 @@ def main():
 
     # save prediction
     depth_img_np = depth_montage(pred_depths)
+    #import pdb
+    #pdb.set_trace()
     depth_img = Image.fromarray((255*depth_img_np).astype(np.uint8))
     depth_img.save('demo_depth_prediction.png')
 

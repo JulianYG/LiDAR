@@ -41,9 +41,9 @@ use_gpu = theano.config.device.startswith('gpu')
 checkgrad = False
 
 if use_gpu:
-    from theano.sandbox.cuda import GpuOp, gpu_from_host, host_from_gpu, \
+    from theano.sandbox.cuda import GpuOp,  \
                                     CudaNdarrayType, CudaNdarray
-    from theano.sandbox.cuda.basic_ops import gpu_contiguous
+    from theano.sandbox.cuda.basic_ops import gpu_contiguous, gpu_from_host, host_from_gpu
 
 class Eval(object):
     def __init__(self, globals=None, locals=None):
