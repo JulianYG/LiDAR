@@ -1,19 +1,3 @@
-'''
-Copyright (C) 2014 New York University
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
 import os
 import time
 import numpy as np
@@ -76,6 +60,7 @@ def _zero_pad_batch(batch, bsize):
 class machine(Machine):
     def __init__(self, conf):
         Machine.__init__(self, conf)
+	print 'depth machine initing'	
 
     def infer_depth(self, images):
         '''
@@ -98,7 +83,7 @@ class machine(Machine):
         v = self.vars
         pred_depth = self.inverse_depth_transform(self.fine.pred_mean)
         infer_f = theano.function([v.images], pred_depth)
-
+	
         depths = np.zeros((nimgs, output_h, output_w), dtype=np.float32)
 
         # crop region (from random translations in training)
@@ -144,6 +129,7 @@ class machine(Machine):
                 off_w, off_w + input_w)
 
     def define_machine(self):
+	print 'defining machine'
         self.orig_input_size = (240, 320) # before data transforms
         self.input_size = (228, 304) # after data transforms
         self.output_size = self.conf.geteval('full2', 'output_size')
@@ -271,7 +257,9 @@ class machine(Machine):
         f_1 = relu(full1.infer(imnet_feats))
         f_1_drop = random_zero(f_1, 0.5)
         f_1_mean = 0.5 * f_1
-
+	print "has random"        
+	print f_1_drop
+	
         full2 = self.create_unit('full2', ninput=test_shape(f_1_mean)[1])
 
         f_2_drop = full2.infer(f_1_drop)
@@ -321,6 +309,7 @@ class machine(Machine):
         pred_mean = z_s2_3_mean[:,0,:,:]
 
         self.fine = MachinePart(locals())
+	print "use fine"
 
     def define_cost(self, pred, y0, m0):
         bsize = self.bsize

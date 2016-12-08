@@ -22,6 +22,8 @@ def main():
     # build depth inference function and run
     rgb_imgs = np.asarray(rgb).reshape((1, 240, 320, 3))
     pred_depths = machine.infer_depth(rgb_imgs)
+    pred_depths2 = machine.infer_depth(rgb_imgs)
+    print np.mean(np.mean(pred_depths == pred_depths2))
 
     # save prediction
     (m, M) = (pred_depths.min(), pred_depths.max())
